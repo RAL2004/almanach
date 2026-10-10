@@ -369,17 +369,18 @@
     if (!openBtn || !mdiag) return;
     var track = document.getElementById('mdiag-track');
     var CMP = [
-      { m: 'haiku', d: 'Schnell & günstig. Für alles mit genau einer richtigen Antwort — Routine, Aufräumen, Formate.' },
-      { m: 'sonnet', d: 'Das Arbeitspferd. Umsetzung, Iteration und Bugfixes mit klarer Ursache.' },
-      { m: 'opus', d: 'Bestes Urteilsvermögen. Konzept, Architektur, visuelle Richtung, unklare Fehlerbilder.' },
-      { m: 'fable', d: 'Spezialist für Grenzfälle — erst wenn Opus zweimal an derselben Aufgabe gescheitert ist.' }
+      { m: 'haiku', p: 'ab $0.10 / $0.50', d: 'Schnell & günstig. Für alles mit genau einer richtigen Antwort — Routine, Aufräumen, Formate, Subagenten.' },
+      { m: 'sonnet', p: '$2 / $10', d: 'Das Arbeitspferd. Umsetzung, Iteration und Bugfixes mit klarer Ursache.' },
+      { m: 'opus', p: '$4 / $20', d: 'Bestes Urteilsvermögen. Konzept, Architektur, visuelle Richtung, unklare Fehlerbilder.' },
+      { m: 'fable', p: '$10 / $50', d: 'Spezialist für Grenzfälle — erst wenn Opus auch mit höherem Effort scheitert.' }
     ];
     CMP.forEach(function (row) {
       var n = document.createElement('div');
       n.className = 'mdiag-node';
       n.setAttribute('data-m', row.m);
       n.innerHTML = '<span class="mdiag-dot" aria-hidden="true"></span>' +
-        '<span class="mdiag-name">' + esc(LABEL[row.m]) + '</span>' +
+        '<span class="mdiag-name">' + esc(LABEL[row.m]) + ' 5.' + (row.m === 'fable' ? '1' : '5') + '</span>' +
+        '<span class="mdiag-price">' + esc(row.p) + ' / MTok</span>' +
         '<span class="mdiag-use">' + esc(row.d) + '</span>';
       track.appendChild(n);
     });
